@@ -15,14 +15,14 @@ import java.util.Map;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-public class MiErrorController implements ErrorController {
+public class MyErrorController implements ErrorController {
 
     final ErrorAttributes errorAttributes;
 
     @RequestMapping("/error")
     public String handleError(WebRequest webRequest, Model model) {
         log.error("Fallo de la app");
-        Map<String, Object> errorAttributesMap = errorAttributes.getErrorAttributes(webRequest, ErrorAttributeOptions.of(ErrorAttributeOptions.Include.STACK_TRACE));
+        Map<String, Object> errorAttributesMap = errorAttributes.getErrorAttributes(webRequest, ErrorAttributeOptions.of(ErrorAttributeOptions.Include.STACK_TRACE,  ErrorAttributeOptions.Include.PATH, ErrorAttributeOptions.Include.ERROR));
         model.addAttribute("msg", errorAttributesMap.get("error"));
         model.addAttribute("url", errorAttributesMap.get("url"));
         return "error";
