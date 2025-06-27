@@ -15,7 +15,7 @@ import java.util.Map;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-public class MyErrorController implements ErrorController {
+public class MiErrorController implements ErrorController {
 
     final ErrorAttributes errorAttributes;
 
